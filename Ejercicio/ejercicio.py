@@ -5,12 +5,14 @@ info_alumnos = []
 def calif_to_lista():
     with open ('calificaciones.csv', encoding = 'UTF-8') as file:
         delimitador = ';'
-        leer = csv.DictReader(file, delimitador)
-        for i in leer:
-            print(i)
-        sort = sorted(leer, key = operator.itemgetter(1))
+        leer = csv.DictReader(file, delimiter = delimitador)
+        for row in leer:
+            print(row['Apellidos'], row['Nombre'])
+        sort = sorted(leer, key = operator.attrgetter('Apellidos'))
+        print(sort) 
         for i in sort:
             info_alumnos.append(i)
+        print(info_alumnos)
     return info_alumnos
 
 
