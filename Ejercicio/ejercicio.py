@@ -2,12 +2,11 @@ import csv
 
 #estructura general:
 def calif_to_lista():
-    open ('calificaciones.csv')
-    file = 'calificaciones.csv'
-    delimitador = ';'
-    leer = csv.DictReader(file, delimitador)
-    for i in leer:
-        print(i)
+    with open ('calificaciones.csv') as file:
+        delimitador = ';'
+        leer = csv.DictReader(file, delimitador)
+        for i in leer:
+            print(i)
 
 
 
