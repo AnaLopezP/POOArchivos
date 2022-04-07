@@ -3,7 +3,9 @@ import csv
 #estructura general:
 def calif_to_lista():
     open ('calificaciones.csv')
-    leer = csv.reader('calificaciones.csv')
+    file = 'calificaciones.csv'
+    delimitador = ';'
+    leer = csv.DictReader(file, delimitador)
     for i in leer:
         print(i)
 
