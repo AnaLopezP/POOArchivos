@@ -1,12 +1,14 @@
 import csv
-
+lista = []
 #estructura general:
 def calif_to_lista():
     with open ('calificaciones.csv') as file:
         delimitador = ';'
         leer = csv.DictReader(file, delimitador)
-        for i in leer:
-            print(i)
+        sort = sorted(leer, key = 'Apellidos')
+        for i in sort:
+            lista.append(i)
+        return lista
 
 
 
