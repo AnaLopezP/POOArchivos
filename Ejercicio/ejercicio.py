@@ -37,5 +37,32 @@ def añadir_final(lista):
     #print(lista)
 
 
+def aprobados_suspensos(lista):
+    locale.setlocale(locale.LC_ALL, 'nl_NL')
+    for i in lista:
+        nota_parcial1 = i.get('Parcial1')
+        if not nota_parcial1:
+            nota_parcial1= "0"
+        else: 
+            nota_parcial1 = locale.atof(nota_parcial1)
+        nota_parcial2 = i.get('Parcial2')
+        if not nota_parcial2:
+            nota_parcial2= 0
+        else:
+            nota_parcial2 = locale.atof(nota_parcial2)
+        nota_final = i.get('Final')
+        if not nota_final:
+            nota_final = 0
+        asistencia = i.get('Asistencia')
+        if not asistencia:
+            asistencia = 0
+        else:
+            asistencia = asistencia.removesuffix("%")
+            asistencia = locale.atoi(asistencia)
+        if asistencia >=75 and nota_parcial1 >=4 and nota_parcial2 >= 4 and nota_final >=5:
+            aprobados.append(i)
+        else:
+            suspensos.append(i)
 
+    return aprobados, suspensos
 
