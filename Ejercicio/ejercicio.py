@@ -1,6 +1,9 @@
 import csv
 import operator
+import locale
 info_alumnos = []
+aprobados = []
+suspensos = []
 #estructura general:
 #funcion que ordena por apellidos en orden alfabetico
 def calif_to_lista():
@@ -17,19 +20,22 @@ def calif_to_lista():
 
 
 def añadir_final(lista):
+    locale.setlocale(locale.LC_ALL, 'nl_NL')
     for i in lista:
         nota_parcial1 = i.get('Parcial1')
+        if not nota_parcial1:
+            nota_parcial1= "0"
         nota_parcial2 = i.get('Parcial2')
+        if not nota_parcial2:
+            nota_parcial2= "0"
         nota_practicas = i.get('Practicas')
-        i['Final'] = float(nota_parcial1)*0.3 + float(nota_parcial2)*0.3 + float(nota_practicas)*0.4
+        if not nota_practicas:
+            nota_practicas = "0"
+        
+        nota_final = round (locale.atof(nota_parcial1)*0.3 + locale.atof(nota_parcial2)*0.3 + locale.atof(nota_practicas)*0.4, 2)
+        i['Final'] = nota_final
+    #print(lista)
 
 
 
 
-
-
-def aprobados_suspensos():
-    pass
-
-calif_to_lista()
-añadir_final(info_alumnos)
